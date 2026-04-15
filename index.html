@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Go - AI</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+        }
+
+        #game-container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        canvas {
+            background-image: url('https://www.transparenttextures.com/patterns/wood-pattern-with-holes.png'); 
+            background-color: #deb887;
+            cursor: pointer;
+            border: 2px solid #5d4037;
+            border-radius: 4px;
+        }
+
+        #status {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .turn-black { border-bottom: 5px solid black; }
+        .turn-white { border-bottom: 5px solid #ccc; }
+
+        /* --- buttons style --- */
+        #controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.1s, opacity 0.2s;
+        }
+
+        button:hover { opacity: 0.9; }
+        button:active { transform: scale(0.95); box-shadow: 0 2px 3px rgba(0,0,0,0.1); }
+
+        .btn-pass { background-color: #f39c12; color: white; }
+        .btn-score { background-color: #27ae60; color: white; }
+        .btn-reset { background-color: #c0392b; color: white; }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <h2 style="margin-top:0; color:#333;">Go Engine (Powered by Kaya HF)</h2>
+        
+        <canvas id="goBoard" width="500" height="500"></canvas>
+        
+        <div id="status" class="turn-black">Black turn</div>
+
+        <div id="controls">
+            <button class="btn-pass" onclick="passTurn()">Skip your turn</button>
+            <button class="btn-score" onclick="finishGame()">Count points</button>
+            <button class="btn-reset" onclick="resetGame()">Reset</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
