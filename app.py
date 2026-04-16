@@ -16,7 +16,7 @@ except Exception as e:
 
 # --- II TACTICAL RULES ---
 
-def count_liberties(board, x, y, color, size=9):
+def count_liberties(board, x, y, color, size=19):
     visited = set()
     stack = [(x, y)]
     liberties = set()
@@ -31,7 +31,7 @@ def count_liberties(board, x, y, color, size=9):
                 elif board[nx][ny] == color: stack.append((nx, ny))
     return len(liberties)
 
-def find_capture_move(board, size=9):
+def find_capture_move(board, size=19):
     """ Looking for capture move """
     for r in range(size):
         for c in range(size):
@@ -48,13 +48,13 @@ def find_capture_move(board, size=9):
                 if captured: return r, c
     return None
 
-def is_suicide(board, x, y, color, size=9):
+def is_suicide(board, x, y, color, size=19):
     board[x][y] = color
     libs = count_liberties(board, x, y, color, size)
     board[x][y] = None
     return libs == 0
 
-def get_territory(board, size=9):
+def get_territory(board, size=19):
     """ Flood Fill algorithm to count (Referee) """
     visited = set()
     black_t, white_t = 0, 0
@@ -86,7 +86,7 @@ def get_territory(board, size=9):
 def predict():
     data = request.json
     board = data['board']
-    size = int(data.get('size', 9))
+    size = int(data.get('size', 19))
 
     # 1 capture move
     capture = find_capture_move(board, size)
@@ -134,7 +134,7 @@ def predict():
 def calculate_score():
     data = request.json
     board = data['board']
-    size = int(data.get('size', 9))
+    size = int(data.get('size', 19))
     
     b_stones = sum(row.count('black') for row in board)
     w_stones = sum(row.count('white') for row in board)

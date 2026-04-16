@@ -2,7 +2,7 @@ const canvas = document.getElementById('goBoard');
 const ctx = canvas.getContext('2d');
 const statusElement = document.getElementById('status');
 
-const boardSize = 9; 
+const boardSize = 19; 
 const cellSize = canvas.width / (boardSize + 1);
 const padding = cellSize;
 
